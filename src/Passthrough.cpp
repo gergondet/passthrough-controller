@@ -14,7 +14,13 @@ Passthrough::Passthrough(mc_rbdyn::RobotModulePtr rm, double dt, const mc_rtc::C
 
 bool Passthrough::run()
 {
-  return mc_control::MCController::run();
+  const auto & encoders = robot().encoderValues();
+  auto & q = robot().mbc().q;
+  for(size_t i = 0; i < robot().module().ref_joint_order().size(); ++i)
+  {
+    q[robot().jointIndexInMBC(i)][0] = encoders[i];
+  }
+  return true;
 }
 
 void Passthrough::reset(const mc_control::ControllerResetData & reset_data)
