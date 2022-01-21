@@ -22,3 +22,5 @@ Use the following entry in your mc_rtc configuration file:
 ```yaml
 Enabled: Passthrough
 ```
+
+[mc_rtc]: https://github.com/jrl-umi3218/mc_rtc
